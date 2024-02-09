@@ -13,17 +13,30 @@ std::string convToLower(std::string src)
 
 /** Complete the code to convert a string containing a rawWord
     to a set of words based on the criteria given in the assignment **/
-std::set<std::string> parseStringToWords(string rawWords)
+set<string> parseStringToWords(string rawWords)
 {
-
-
-
-
-
-
-
-
-
+    // make set to return
+    set<string> wordSet;
+    string indivWord = "";
+    for(size_t i=0; i < rawWords.size(); i++){
+        // if the character is alphanumeric
+        if(isalnum(rawWords[i])){
+            // add the character to the string
+            indivWord.push_back(rawWords[i]);
+        }
+        // if the character is punct or space
+        else {
+            if(indivWord.size() > 1){
+                wordSet.insert(convToLower(indivWord));
+            }
+            indivWord = "";
+        }
+    }
+    // gets the last keyword
+    if(indivWord.size() > 1){
+        wordSet.insert(indivWord);
+    }
+    return wordSet;
 
 }
 
