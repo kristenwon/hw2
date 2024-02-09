@@ -12,6 +12,10 @@ MyDataStore::~MyDataStore() {
     for(it = products.begin(); it != products.end(); ++it){
         delete *it;
     }
+    set<User*>::iterator uit;
+    for(uit = users.begin(); uit != users.end(); ++uit){
+        delete *uit;
+    }
 }
 
 void MyDataStore::addProduct(Product* p)
