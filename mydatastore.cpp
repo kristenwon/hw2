@@ -54,11 +54,14 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
 {
     set<string> termSet(terms.begin(), terms.end());
     vector<Product*> prodVec;
-    // if the search term is one word
+    // if there is one search term
     if(termSet.size() == 1){
         set<string>::iterator it = termSet.begin();
         set<Product*> keyProdSet = keyMap.find(*it)->second;
-        copy(keyProdSet.begin(), keyProdSet.end(), prodVec.begin());
+        set<Product*>::iterator prod;
+        for(prod = keyProdSet.begin(); prod != keyProdSet.end(); ++prod){
+            prodVec.push_back(*prod);
+        }
     }
     // AND search
     else if(type == 0){
@@ -72,10 +75,13 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
         set<string>::iterator it2;
         // get subsets of the union (reduces)
         for(it2 = termSet.begin(); it2 != termSet.end(); ++it2){
-            set<Product*> keyProdSet = keyMap.find(*it)->second;
+            set<Product*> keyProdSet = keyMap.find(*it2)->second;
             megaProd = setIntersection(megaProd, keyProdSet);
         }
-        copy(megaProd.begin(), megaProd.end(), prodVec.begin());
+        set<Product*>::iterator prod;
+        for(prod = megaProd.begin(); prod != megaProd.end(); ++prod){
+            prodVec.push_back(*prod);
+        }
     }
     // OR search
     else if(type == 1){
@@ -85,7 +91,10 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
             set<Product*> keyProdSet = keyMap.find(*it)->second;
             setUnion(megaProd, keyProdSet);
         }
-        copy(megaProd.begin(), megaProd.end(), prodVec.begin());
+        set<Product*>::iterator prod;
+        for(prod = megaProd.begin(); prod != megaProd.end(); ++prod){
+            prodVec.push_back(*prod);
+        }
     }
 
     prevSearch.clear();
