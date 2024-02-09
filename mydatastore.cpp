@@ -146,9 +146,11 @@ void MyDataStore::viewCart(string username) const
         cout << "Invalid username" << endl;
     }
     else {
-        for(int i=0; i < usercart->second.size(); i++){
+        if(!(usercart->second.empty())){
+            for(int i=0; i < usercart->second.size(); i++){
             cout << i << endl;
             cout << usercart->second[i]->displayString();
+            }
         }
     }
 }
@@ -160,11 +162,10 @@ void MyDataStore::buyCart(string username)
         cout << "Invalid username" << endl;
     }
     else {
-        set<User*>::iterator us;
-        double cost = 0;
-        
-        
-        for(vector<Product*>::iterator it = usercart->second.begin(); it != usercart->second.end();){
+        if(!usercart->second.empty()){
+            set<User*>::iterator us;
+            double cost = 0;
+            for(vector<Product*>::iterator it = usercart->second.begin(); it != usercart->second.end();){
             if((*it)->getQty() && cost >= (*it)->getPrice()){
                 (*it)->subtractQty(1);
                 cost += (*it)->getPrice();
@@ -175,9 +176,10 @@ void MyDataStore::buyCart(string username)
                 it++;
             }
         }
-        for(us = users.begin(); us != users.end(); ++us){
-            if((*us)->getName() == username){
-                (*us)->deductAmount(cost);
+            for(us = users.begin(); us != users.end(); ++us){
+                if((*us)->getName() == username){
+                    (*us)->deductAmount(cost);
+                }
             }
         }
     }
