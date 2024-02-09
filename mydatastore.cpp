@@ -7,6 +7,7 @@ using namespace std;
 
 MyDataStore::MyDataStore() { }
 MyDataStore::~MyDataStore() {
+    // deallocate all the products made in product_parser
     set<Product*>::iterator it;
     for(it = products.begin(); it != products.end(); ++it){
         delete *it;
