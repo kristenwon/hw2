@@ -40,7 +40,7 @@ string Clothing::displayString() const {
     stringstream ss;
     ss << fixed << setprecision(2);
     ss << price_;
-    string tempstring = name_ + "\nSize: " + size_ + " Brand: " + brand_ + "\n" + to_string(price_) + " " + to_string(qty_) + " left.\n";
+    string tempstring = name_ + "\nSize: " + size_ + " Brand: " + brand_ + "\n" + ss.str() + " " + to_string(qty_) + " left.\n";
     
     return tempstring;
 }
