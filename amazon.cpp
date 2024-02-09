@@ -127,6 +127,12 @@ int main(int argc, char* argv[])
         }
 
     }
+    // delete ProductSectionParser;
+    // delete ProductBookParser;
+    // delete ProductClothingParser;
+    // delete ProductMovieParser;
+    // delete UserSectionParser;
+
     return 0;
 }
 

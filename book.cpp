@@ -27,11 +27,11 @@ set<string> Book::keywords() const{
     set<string> nameSet = parseStringToWords(name_);
     set<string> authorSet = parseStringToWords(author_);
     for(set<string>::iterator it=nameSet.begin(); it != nameSet.end(); ++it) {
-        tempkeywords.insert(*it);
+        tempkeywords.insert(convToLower(*it));
     }
     tempkeywords.insert(isbn_);
     for(set<string>::iterator it=authorSet.begin(); it != authorSet.end(); ++it) {
-        tempkeywords.insert(*it);
+        tempkeywords.insert(convToLower(*it));
     }
 
     return tempkeywords;

@@ -34,7 +34,7 @@ set<string> parseStringToWords(string rawWords)
     }
     // gets the last keyword
     if(indivWord.size() > 1){
-        wordSet.insert(indivWord);
+        wordSet.insert(convToLower(indivWord));
     }
     return wordSet;
 

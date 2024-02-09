@@ -6,7 +6,12 @@
 using namespace std;
 
 MyDataStore::MyDataStore() { }
-MyDataStore::~MyDataStore() { }
+MyDataStore::~MyDataStore() {
+    set<Product*>::iterator it;
+    for(it = products.begin(); it != products.end(); ++it){
+        delete *it;
+    }
+}
 
 void MyDataStore::addProduct(Product* p)
 {
