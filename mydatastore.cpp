@@ -126,8 +126,11 @@ void MyDataStore::addToCart(string username, int index)
     map<string, vector<Product*> >::iterator usercart = cart.find(username);
     // if username isn't in the database lol
     if(usercart == cart.end()){ 
-        usercart->second.push_back(prevSearch[index]);
-        cart.insert(std::make_pair(username, usercart->second));
+        vector<Product*> newCart;
+        if(!prevSearch.empty()){
+            newCart.push_back(prevSearch[index]);
+        }
+        cart.insert(std::make_pair(username, newCart));
     }
     // username already has cart
     else {
