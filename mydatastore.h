@@ -16,7 +16,7 @@ public:
 private:
     std::set<Product*> products;
     std::set<User*> users;
-    std::map<std::string, std::set<Product*>> keyMap;
-    std::map<std::string, std::vector<Product*>> cart;
+    std::map<std::string, std::set<Product*> > keyMap;
+    std::map<std::string, std::vector<Product*> > cart;
     std::vector<Product*> prevSearch;
 };

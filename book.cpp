@@ -38,12 +38,16 @@ set<string> Book::keywords() const{
 }
 
 string Book::displayString() const {
-    string tempstring = name_ + "\nAuthor: " + author_ + " ISBN: " + isbn_ + "\n" + to_string(price_) + " " + to_string(qty_) + " left.\n";
+    stringstream ss;
+    ss << fixed << setprecision(2);
+    ss << price_;
+
+    string tempstring = name_ + "\nAuthor: " + author_ + " ISBN: " + isbn_ + "\n" + ss.str() + " " + to_string(qty_) + " left.\n";
     
     return tempstring;
 }
 
 void Book::dump(ostream& os) const
 {
-    os << category_ << "\n" << name_ << "\n" << price_ << "\n" << qty_ << "\n" << isbn_ << "\n" << author_ << endl;
+    os << category_ << "\n" << name_ << "\n" << setprecision(2) << price_ << "\n" << qty_ << "\n" << isbn_ << "\n" << author_ << endl;
 }

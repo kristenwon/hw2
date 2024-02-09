@@ -33,7 +33,7 @@ void MyDataStore::addProduct(Product* p)
         }
         // if the keyword is already in the map
         else {
-            map<string, set<Product*>>::iterator existPair = keyMap.find(*it);
+            map<string, set<Product*> >::iterator existPair = keyMap.find(*it);
             // add the product to the product set
             existPair->second.insert(p);
         }
@@ -110,7 +110,7 @@ void MyDataStore::dump(std::ostream& ofile)
 
 void MyDataStore::addToCart(string username, int index)
 {
-    map<string, vector<Product*>>::iterator usercart = cart.find(username);
+    map<string, vector<Product*> >::iterator usercart = cart.find(username);
     // if username isn't in the database lol
     if(usercart == cart.end()){ 
         usercart->second.push_back(prevSearch[index]);
@@ -124,7 +124,7 @@ void MyDataStore::addToCart(string username, int index)
 
 void MyDataStore::viewCart(string username) const
 {
-    map<string, vector<Product*>>::const_iterator usercart = cart.find(username);
+    map<string, vector<Product*> >::const_iterator usercart = cart.find(username);
     // invalid username
     if(usercart == cart.end()){
         cout << "Invalid username" << endl;
@@ -139,7 +139,7 @@ void MyDataStore::viewCart(string username) const
 
 void MyDataStore::buyCart(string username)
 {
-    map<string, vector<Product*>>::iterator usercart = cart.find(username);
+    map<string, vector<Product*> >::iterator usercart = cart.find(username);
     if(usercart == cart.end()){
         cout << "Invalid username" << endl;
     }
