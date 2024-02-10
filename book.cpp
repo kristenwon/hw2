@@ -42,7 +42,7 @@ string Book::displayString() const {
     ss << fixed << setprecision(2);
     ss << price_;
 
-    string tempstring = name_ + "\nAuthor: " + author_ + " ISBN: " + isbn_ + "\n" + ss.str() + " " + to_string(qty_) + " left.\n";
+    string tempstring = name_ + "         \nAuthor: " + author_ + " ISBN: " + isbn_ + "\n" + ss.str() + "  " + to_string(qty_) + " left.\n";
     
     return tempstring;
 }

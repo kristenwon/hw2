@@ -20,12 +20,12 @@ J. Crew
 movie
 Hidden Figures DVD
 17.99
-1
+5
 Drama
 PG
 </products>
 <users>
-aturing 100.00 0
-johnvn 50.00 1
-adal 120.00 1
+rafsilva 100.00 0
+redekopp 50.00 1
+saty 120.00 1
 </users>

@@ -40,7 +40,7 @@ string Movie::displayString() const {
     stringstream ss;
     ss << fixed << setprecision(2);
     ss << price_;
-    string tempstring = name_ + "\nGenre: " + genre_ + " Rating: " + rating_ + "\n" + ss.str() + " " + to_string(qty_) + " left.\n";
+    string tempstring = name_ + "         \nGenre: " + genre_ + " Rating: " + rating_ + "\n" + ss.str() + "  " + to_string(qty_) + " left.\n";
     
     return tempstring;
 }

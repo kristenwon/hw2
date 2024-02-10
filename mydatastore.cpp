@@ -20,7 +20,7 @@ MyDataStore::~MyDataStore() {
 
 void MyDataStore::addProduct(Product* p)
 {
-    set<string>::iterator it;
+    set<string> keyWords = p->keywords();
     // set of keywords in the product that was passed in
     set<string> keyWords = p->keywords();
 
@@ -89,7 +89,7 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
         set<string>::iterator it;
         for(it = termSet.begin(); it != termSet.end(); ++it){
             set<Product*> keyProdSet = keyMap.find(*it)->second;
-            setUnion(megaProd, keyProdSet);
+            megaProd = setUnion(megaProd, keyProdSet);
         }
         set<Product*>::iterator prod;
         for(prod = megaProd.begin(); prod != megaProd.end(); ++prod){
@@ -165,19 +165,21 @@ void MyDataStore::buyCart(string username)
         if(!usercart->second.empty()){
             set<User*>::iterator us;
             double cost = 0;
-            vector<Product*> temp;
+            vector<vector<Product*>::iterator> temp;
+            vector<Product*>::iterator idx;
             for(vector<Product*>::iterator it = usercart->second.begin(); it != usercart->second.end();){
-                if((*it)->getQty() && cost >= (*it)->getPrice()){
+                if((*it)->getQty() > 0 && cost >= (*it)->getPrice()){
                     cout << "got Here" << endl;
                     (*it)->subtractQty(1);
                     cost += (*it)->getPrice();
 
-                    temp.push_back(*it);
-                    
+                    temp.push_back(idx);
                 }
                 else {
                     it++;
+                    idx++;
                 }
+                idx++;
             }
             for(int i=0; i < temp.size(); i++){
                 (usercart->second).erase(temp[i]);
