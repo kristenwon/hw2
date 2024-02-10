@@ -165,17 +165,23 @@ void MyDataStore::buyCart(string username)
         if(!usercart->second.empty()){
             set<User*>::iterator us;
             double cost = 0;
+            vector<Product*> temp;
             for(vector<Product*>::iterator it = usercart->second.begin(); it != usercart->second.end();){
-            if((*it)->getQty() && cost >= (*it)->getPrice()){
-                (*it)->subtractQty(1);
-                cost += (*it)->getPrice();
+                if((*it)->getQty() && cost >= (*it)->getPrice()){
+                    cout << "got Here" << endl;
+                    (*it)->subtractQty(1);
+                    cost += (*it)->getPrice();
 
-                it = usercart->second.erase(it); // Erasing the pointer from the vector
+                    temp.push_back(*it);
+                    
+                }
+                else {
+                    it++;
+                }
             }
-            else {
-                it++;
+            for(int i=0; i < temp.size(); i++){
+                (usercart->second).erase(temp[i]);
             }
-        }
             for(us = users.begin(); us != users.end(); ++us){
                 if((*us)->getName() == username){
                     (*us)->deductAmount(cost);
