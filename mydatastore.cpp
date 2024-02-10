@@ -121,21 +121,26 @@ void MyDataStore::dump(std::ostream& ofile)
     ofile << "</users>" << endl;
 }
 
-void MyDataStore::addToCart(string username, int index)
+void MyDataStore::addProduct(Product* p)
 {
-    map<string, vector<Product*> >::iterator usercart = cart.find(username);
-    // if username isn't in the database lol
-    if(usercart == cart.end()){ 
-        vector<Product*> newCart;
-        if(!prevSearch.empty()){
-            newCart.push_back(prevSearch[index]);
+    set<string> keyWords = p->keywords();
+
+    for (set<string>::iterator it = keyWords.begin(); it != keyWords.end(); ++it) {
+        const string& keyword = *it;
+        
+        map<string, set<Product*> >::iterator mapIt = keyMap.find(keyword);
+        // if the keyword is not in the map
+        if (mapIt == keyMap.end()) {
+            set<Product*> productSet;
+            productSet.insert(p);
+            keyMap[keyword] = productSet;
+        } else {
+            // if it is add it to set
+            mapIt->second.insert(p);
         }
-        cart.insert(std::make_pair(username, newCart));
     }
-    // username already has cart
-    else {
-        usercart->second.push_back(prevSearch[index]);
-    }
+
+    products.insert(p);
 }
 
 void MyDataStore::viewCart(string username) const
