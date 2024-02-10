@@ -104,7 +104,7 @@ int main(int argc, char* argv[])
             else if ( cmd == "ADD" ) {
                 string username; int index;
                 if(ss >> username >> index){
-                    ds.addToCart(username, index);
+                    ds.addToCart(username, index, hits);
                 }
             }
             else if ( cmd == "VIEWCART" ) {
